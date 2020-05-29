@@ -39,6 +39,14 @@ class CalculateAwardQuality
     @new_quality += 1 if self.new_expires_in < 0 && self.new_quality < 50
   end
 
+  def blue_star
+    @new_quality -= 2 if self.new_quality > 0
+    @new_expires_in = self.new_expires_in - 1
+    @new_quality -= 2 if self.new_expires_in < 0
+
+    @new_quality = 0 if self.new_quality < 0
+  end
+
   def blue_compare
     if self.new_quality < 50
       @new_quality += 1 
